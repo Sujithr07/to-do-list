@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Todo App</title>
+</head>
+<body>
+  <h1>Todo App</h1>
+
+  <!-- Create Task -->
+  <section>
+    <h2>Create Task</h2>
+    <form action="#" method="post">
+      <div>
+        <label for="id_title">Title</label><br>
+        <input type="text" id="id_title" name="title" required>
+      </div>
+      <div>
+        <label for="id_description">Description</label><br>
+        <textarea id="id_description" name="description" rows="3"></textarea>
+      </div>
+      <div>
+        <button type="submit">Create</button>
+      </div>
+    </form>
+  </section>
+
+  <hr>
+
+  <!-- Active Tasks -->
+  <section>
+    <h2>Active Tasks</h2>
+    <ul>
+      <li>
+        <strong>Buy groceries</strong>
+        <div>Milk, Eggs, Bread</div>
+        <div>
+          <button>Mark as Done</button>
+          <button>Edit</button>
+          <button>Delete</button>
+        </div>
+      </li>
+      <li>
+        <strong>Finish assignment</strong>
+        <div>Due tomorrow</div>
+        <div>
+          <button>Mark as Done</button>
+          <button>Edit</button>
+          <button>Delete</button>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <hr>
+
+  <!-- Past Tasks (Completed) -->
+  <section>
+    <h2>Past Tasks (Completed)</h2>
+    <ul>
+      <li>
+        <del><strong>Clean the room</strong></del>
+        <div>Completed yesterday</div>
+        <div>
+          <button>Mark as Active</button>
+          <button>Delete</button>
+        </div>
+      </li>
+      <li>
+        <del><strong>Pay electricity bill</strong></del>
+        <div>Completed last week</div>
+        <div>
+          <button>Mark as Active</button>
+          <button>Delete</button>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <hr>
+
+  <footer>
+    <p>Simple Todo App</p>
+  </footer>
+</body>
+</html>
