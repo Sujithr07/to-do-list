@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'todolist.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'sujith',
+        'NAME': 'todolist',
         'USER': 'root',
         'PASSWORD':'pass0407',
         'HOST':'localhost',
@@ -123,7 +123,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS=[
-    ''
+    (os.path.join(BASE_DIR,'static')),
 ]
 
 

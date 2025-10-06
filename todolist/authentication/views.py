@@ -8,6 +8,8 @@ def register(request):
         password=request.POST.get('password')
         confirm_password=request.POST.get('confirm_password')
 
+        print(request.POST)
+
 
     return render(request,'authentication/register.html')
 
