@@ -9,6 +9,15 @@
 <body>
 
   <h2>Login</h2>
+  {% if messages %}
+    {% for message in messages%}
+      {% if message.tags == 'error' %}
+        <center><h3 style="color: red;">{{message}}</h4></center>
+      {% else %}
+        <center><h3 style="color: blue;">{{message}}</h4></center>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
   <form method="post">
     {% csrf_token %}
     <label>Username:</label><br>
@@ -20,7 +29,7 @@
     <button type="submit">Login</button>
   </form>
 
-  <p>Don’t have an account? <a href="{% url 'register'%}">Register</a></p>
+  <center><p>Don’t have an account? <a href="{% url 'register'%}">Register</a></p></center>
 
 </body>
 </html>

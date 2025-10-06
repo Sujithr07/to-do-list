@@ -1,4 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
+from django.contrib import messages
+from django.contrib.auth import authenticate,login
+from django.http import HttpResponse
 
 
 def register(request):
@@ -8,12 +12,55 @@ def register(request):
         password=request.POST.get('password')
         confirm_password=request.POST.get('confirm_password')
 
-        print(request.POST)
 
+        user_data_has_error= False
+
+        if User.objects.filter(username=username).exists():
+            messages.error(request,'username already exists')
+            user_data_has_error= True
+            
+        if User.objects.filter(email=email).exists():
+            messages.error(request,'email already exists')
+            user_data_has_error= True
+
+        if password!=confirm_password:
+            user_data_has_error= True
+            messages.error(request,'password does not match')
+
+        if user_data_has_error:  
+            return redirect('register')
+
+        user=User.objects.create_user(
+            username=username,
+            email=email,
+            password=password
+        )
+        user.save()
+        messages.success(request,"account has been created, log in")
+        return redirect('login')
 
     return render(request,'authentication/register.html')
 
-
 def login_user(request):
+    if request.method=='POST':
+
+        username=request.POST.get('username')
+        password=request.POST.get('password')
+
+        if not (username and password):
+            return redirect('login')
+
+        user=authenticate(request=request,username=username,password=password)
+
+        if user is None:
+            login(request,user)
+            return redirect('home')
+
+        else:
+            messages.error(request,'inavlid username or password')
+            return redirect('login')
+
     return render(request,'authentication/login.html')
     
+def home(request):
+    return HttpResponse('you r authenticated')
