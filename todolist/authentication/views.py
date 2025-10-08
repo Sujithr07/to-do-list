@@ -1,11 +1,15 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
-from django.contrib.auth import authenticate,login
+from django.contrib.auth import authenticate,login,logout
 from django.http import HttpResponse
-
+from django.contrib.auth.decorators import login_required
 
 def register(request):
+
+    if request.user.is_authenticated:
+        return redirect('home')
+    
     if request.method =='POST':
         username=request.POST.get('username')
         email=request.POST.get('email')
@@ -42,6 +46,11 @@ def register(request):
     return render(request,'authentication/register.html')
 
 def login_user(request):
+
+    if request.user.is_authenticated:
+        return redirect('home')
+
+
     if request.method=='POST':
 
         username=request.POST.get('username')
@@ -52,7 +61,7 @@ def login_user(request):
 
         user=authenticate(request=request,username=username,password=password)
 
-        if user is None:
+        if user is not None:
             login(request,user)
             return redirect('home')
 
@@ -61,6 +70,12 @@ def login_user(request):
             return redirect('login')
 
     return render(request,'authentication/login.html')
-    
+
+@login_required  
 def home(request):
-    return HttpResponse('you r authenticated')
+    return HttpResponse("you r authenticated <br><a href='/logout'>Logout</a>")
+
+
+def logout_user(request):
+    logout(request)
+    return redirect('login')
