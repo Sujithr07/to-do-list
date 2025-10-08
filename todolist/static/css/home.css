@@ -1,0 +1,149 @@
+:root {
+  --bg: #f8f9fa;
+  --muted: #6c757d;
+  --accent: #007bff;
+  --accent-hover: #0056b3;
+  --danger: #dc3545;
+  --danger-hover: #b02a37;
+}
+
+/* ===== Base Page Setup ===== */
+body {
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: var(--bg);
+  color: #212529;
+  margin: 0;
+  padding: 0 20px;
+}
+
+/* ===== Header ===== */
+.header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 25px;
+  margin-bottom: 10px;
+}
+
+.header-left .app-title {
+  font-weight: 700;
+  font-size: 2rem;
+  color: #0b1220;
+  margin: 0;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.username {
+  font-size: 1rem;
+  color: #333;
+}
+
+.logout-btn {
+  background-color: var(--danger);
+  color: white;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.logout-btn:hover {
+  background-color: var(--danger-hover);
+}
+
+/* ===== Main Content Wrapper ===== */
+.todo-container {
+  max-width: 900px;    /* reduce stretch width */
+  margin: 0 auto;      /* center content */
+  padding: 0 20px;
+}
+
+/* ===== Sections ===== */
+section {
+  margin-top: 30px;
+}
+
+h3 {
+  font-size: 1.25rem;
+  margin-bottom: 15px;
+  color: #0b1220;
+}
+
+/* ===== Form ===== */
+form#create-task-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.form-control {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ced4da;
+  flex: 1;
+  min-width: 150px;
+  max-width: 300px; /* prevents stretching */
+}
+
+button,
+.btn {
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  color: white;
+  background-color: var(--accent);
+  transition: background-color 0.2s ease;
+}
+
+button:hover,
+.btn:hover {
+  background-color: var(--accent-hover);
+}
+
+/* ===== Task Lists ===== */
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+li {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.list-group-item.text-muted {
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 600px) {
+  .header-bar {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  form#create-task-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .form-control {
+    max-width: 100%;
+  }
+
+  .todo-container {
+    padding: 0 10px;
+  }
+}

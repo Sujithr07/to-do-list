@@ -1,86 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Todo App</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+    crossorigin="anonymous">
+
+  <!-- Custom CSS -->
+   {%load static%}
+  <link rel="stylesheet" href={% static 'css/home.css'%}>
 </head>
 <body>
-  <h1>Todo App</h1>
 
-  <!-- Create Task -->
-  <section>
-    <h2>Create Task</h2>
-    <form action="#" method="post">
-      <div>
-        <label for="id_title">Title</label><br>
-        <input type="text" id="id_title" name="title" required>
-      </div>
-      <div>
-        <label for="id_description">Description</label><br>
-        <textarea id="id_description" name="description" rows="3"></textarea>
-      </div>
-      <div>
-        <button type="submit">Create</button>
-      </div>
-    </form>
-  </section>
+  <!-- ===== Header ===== -->
+  <header class="header-bar">
+    <div class="header-left">
+      <h1 class="app-title">Todo App</h1>
+    </div>
+    <div class="header-right">
+      <span class="username">Welcome, username</span>
+      <a href="{% url 'logout' %}"><button class="btn btn-danger logout-btn">Logout</button></a>
+    </div>
+  </header>
 
   <hr>
 
-  <!-- Active Tasks -->
-  <section>
-    <h2>Active Tasks</h2>
-    <ul>
-      <li>
-        <strong>Buy groceries</strong>
-        <div>Milk, Eggs, Bread</div>
-        <div>
-          <button>Mark as Done</button>
-          <button>Edit</button>
-          <button>Delete</button>
-        </div>
-      </li>
-      <li>
-        <strong>Finish assignment</strong>
-        <div>Due tomorrow</div>
-        <div>
-          <button>Mark as Done</button>
-          <button>Edit</button>
-          <button>Delete</button>
-        </div>
-      </li>
-    </ul>
-  </section>
+  <!-- ===== Main Content ===== -->
+  <div class="todo-container">
+    <!-- Create Task -->
+    <section>
+      <h3>Create Task</h3>
+      <form id="create-task-form" action="#" method="post">
+        <input type="text" id="task-title" name="task-title" class="form-control" placeholder="Title" required>
+        <input type="text" id="task-desc" name="task-desc" class="form-control" placeholder="Description">
+        <button type="submit" class="btn btn-primary">Create</button>
+      </form>
+    </section>
 
-  <hr>
+    <hr>
 
-  <!-- Past Tasks (Completed) -->
-  <section>
-    <h2>Past Tasks (Completed)</h2>
-    <ul>
-      <li>
-        <del><strong>Clean the room</strong></del>
-        <div>Completed yesterday</div>
-        <div>
-          <button>Mark as Active</button>
-          <button>Delete</button>
-        </div>
-      </li>
-      <li>
-        <del><strong>Pay electricity bill</strong></del>
-        <div>Completed last week</div>
-        <div>
-          <button>Mark as Active</button>
-          <button>Delete</button>
-        </div>
-      </li>
-    </ul>
-  </section>
+    <!-- Active Tasks -->
+    <section>
+      <h3>Active Tasks</h3>
+      <ul id="active-tasks" class="list-group">
+        <li class="list-group-item text-muted">No active tasks yet.</li>
+      </ul>
+    </section>
 
-  <hr>
+    <hr>
 
-  <footer>
-    <p>Simple Todo App</p>
-  </footer>
+    <!-- Completed Tasks -->
+    <section>
+      <h3>Past Tasks (Completed)</h3>
+      <ul id="completed-tasks" class="list-group">
+        <li class="list-group-item text-muted">No completed tasks yet.</li>
+      </ul>
+    </section>
+
+    <hr>
+
+  
 </body>
 </html>
