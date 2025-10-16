@@ -22,7 +22,7 @@
       <h1 class="app-title">Todo App</h1>
     </div>
     <div class="header-right">
-      <span class="username">Welcome, username</span>
+      <span class="username">Welcome,{{request.user.get_full_name}}</span>
       <a href="{% url 'logout' %}"><button class="btn btn-danger logout-btn">Logout</button></a>
     </div>
   </header>
@@ -34,7 +34,18 @@
     <!-- Create Task -->
     <section>
       <h3>Create Task</h3>
-      <form id="create-task-form" action="#" method="post">
+
+      {% if messages %}
+          {% for message in messages%}
+              {% if message.tags == 'error' %}
+                <center><h3 style="color: red;">{{message}}</h4></center>
+              {% else %}
+                <center><h3 style="color: blue;">{{message}}</h4></center>
+              {% endif %}
+          {% endfor %}
+      {% endif %}
+      <form method="POST">
+        {% csrf_token %}
         <input type="text" id="task-title" name="task-title" class="form-control" placeholder="Title" required>
         <input type="text" id="task-desc" name="task-desc" class="form-control" placeholder="Description">
         <button type="submit" class="btn btn-primary">Create</button>
